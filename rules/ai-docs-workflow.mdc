@@ -1,0 +1,23 @@
+---
+description: Enforce shared AI documentation, cross-application safety, and local Cursor guidance
+alwaysApply: true
+---
+
+# DSP Agent Workflow
+
+For every Agent interaction in a chat tab:
+
+1. Before solving the request, inspect `ai-docs/` for relevant system context, prior decisions, and solutions from other applications or systems.
+2. Discover and read all applicable guidance in the relevant repository's `.cursor/skills/**/SKILL.md` and `.cursor/rules/**/*.mdc` files. Follow the most specific applicable guidance.
+3. Keep progress in the most relevant existing file under `ai-docs/`. If none exists, create a clearly named document for the system and topic.
+4. Record concise progress, findings, decisions, affected systems, and next steps. Never record secrets, credentials, tokens, or sensitive personal data.
+5. Commit every documentation update in the `ai-docs` repository and push it to `origin/main` before completing the interaction. Commit only intended `ai-docs` changes. If the commit or push fails, report the failure clearly and do not claim that documentation is synchronized.
+
+## Cross-Application Safety
+
+- Treat the workspace root as a collection of independent and related DSP repositories; identify repository, application, shared-package, and dependency boundaries before editing code.
+- Assess whether a proposed change can affect other applications, shared components, APIs, schemas, deployments, or integrations, and verify changes in proportion to that risk.
+- When a confirmed issue may exist elsewhere, inspect sibling systems for the same issue and document the findings.
+- Do not implement a matching fix outside the application or system originally requested. First identify the affected systems, explain the proposed scope, and obtain explicit user permission.
+
+Standard code-completion Tab cannot execute file or Git operations; these requirements apply to Agent interactions within chat tabs.
