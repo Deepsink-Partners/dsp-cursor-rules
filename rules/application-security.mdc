@@ -1,0 +1,31 @@
+---
+description: Mandatory application security requirements for every DSP project
+alwaysApply: true
+---
+
+# Mandatory Application Security
+
+Security is a hard requirement, not an optional enhancement. Design, implement, review, and test every change to minimize attack surface and protect confidentiality, integrity, availability, privacy, and user resources. Never trade away a security control for speed or convenience without explicit, documented security approval and compensating controls.
+
+## Required Controls
+
+- Use current OWASP ASVS and OWASP Top 10 guidance, plus framework-specific advisories and credible emerging threats. Protect against broken access control, IDOR/BOLA, injection, XSS, CSRF, SSRF, insecure deserialization, request smuggling, path traversal, unsafe uploads, mass assignment, race conditions, replay, credential attacks, and supply-chain vulnerabilities.
+- Enforce authentication and authorization on the trusted server side for every protected action and resource. Default deny; grant least privilege; verify tenant, ownership, role, permission, scope, and object-level access on every request.
+- Implement fine-grained authorization through centralized policies or guards. Client-side hiding is never authorization. Prevent horizontal and vertical privilege escalation and test both allowed and denied paths.
+- Validate and normalize untrusted input, use parameterized queries and safe framework APIs, encode output for its context, constrain uploads, and apply secure headers, cookies, CORS, CSRF protection, rate limits, replay protection, and idempotency where relevant.
+- Use proven authentication and cryptographic libraries. Require strong session handling, secure recovery, MFA for sensitive or privileged operations where applicable, and re-authentication for high-risk actions.
+- Never expose secrets or sensitive values in source, prompts, URLs, logs, errors, analytics, notifications, or client storage. Store secrets in an approved secret manager, rotate them, and minimize their scope and lifetime.
+- Keep dependencies supported, pinned through lockfiles, reviewed, and patched. Do not suppress security findings without a documented risk decision, owner, compensating control, and expiry date.
+- Produce tamper-resistant audit events for authentication, authorization changes, privileged actions, sensitive-data access, and security failures without recording secret values.
+
+## Sensitive Data at Rest
+
+- Classify data and minimize collection and retention. Passwords must use a modern adaptive password hash; do not reversibly encrypt passwords.
+- Encrypt sensitive application fields before database persistence using authenticated application-layer encryption. Database, disk, or infrastructure encryption alone does not satisfy this field-level requirement.
+- Keep encryption keys outside the database and source code in an approved KMS or secret manager. Support key separation, versioning, rotation, revocation, and audited access.
+- Do not encrypt every frequently queried field blindly when encryption would break required indexing or access patterns. Redesign or minimize the data, use keyed blind indexes or tokenization where appropriate, and document the threat model and leakage.
+- Plaintext caching is not a default workaround. If repeated decryption creates a measured performance problem, use only the minimum decrypted value in tightly access-controlled process memory for the shortest practical TTL, with no logging or persistence. Shared or persistent caches must retain application-layer encryption unless an explicit security review approves a documented exception.
+
+## Verification Gate
+
+Threat-model security-sensitive changes and add automated authorization, tenant-isolation, abuse-case, validation, and encryption tests. Do not declare work complete while known critical or high-severity vulnerabilities remain unresolved.

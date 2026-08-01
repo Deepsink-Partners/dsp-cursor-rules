@@ -1,0 +1,37 @@
+---
+description: Prefer shared DSP packages across all DSP projects
+alwaysApply: true
+---
+
+# Prefer DSP Packages
+
+Before implementing a capability in any DSP project, check whether an approved DSP package already provides it. Prefer reusing or extending the shared package over creating project-specific duplicate functionality.
+
+Consider these packages:
+
+- [file-management](https://github.com/Deepsink-Partners/file-management)
+- [laravel-emails](https://github.com/Deepsink-Partners/laravel-emails)
+- [laravel-push-notifications](https://github.com/Deepsink-Partners/laravel-push-notifications)
+- [laravel-secure](https://github.com/Deepsink-Partners/laravel-secure)
+- [laravel-social-auth](https://github.com/Deepsink-Partners/laravel-social-auth)
+- [payfast](https://github.com/Deepsink-Partners/payfast)
+- [laravel-payments](https://github.com/Deepsink-Partners/laravel-payments)
+
+## Required Process
+
+1. Inspect the relevant package documentation and current API before designing a replacement; use a local checkout under `packages/` when available.
+2. Confirm that the package supports the project's framework version, runtime, security requirements, and required behavior.
+3. Integrate through the package's documented public API; do not copy package internals into an application.
+4. If the package nearly fits, prefer a backward-compatible shared extension over an application-only reimplementation. Obtain explicit permission before changing another repository.
+5. After fixing an issue in a DSP package, identify other DSP projects that consume the affected package or version and determine whether they need the same application-level fix, dependency update, configuration change, or migration.
+6. Present the affected projects and proposed changes, obtain explicit permission, then apply and verify the corresponding fix in each approved project.
+7. If no package is suitable, document why before implementing project-specific functionality.
+
+Do not force a package when it is incompatible, insecure, unmaintained, or cannot meet the requirements safely.
+
+## AI Docs Tracking
+
+- Track every DSP package investigation, integration, fix, compatibility decision, affected consumer, validation result, release requirement, and next step in the relevant file under `ai-docs/`.
+- Update an existing package or project document when possible; otherwise create a clearly named document. Never record secrets or credentials.
+- Commit every `ai-docs` update in the `ai-docs` repository and push it to `origin/main` before completing the Agent interaction.
+- If the commit or push fails, report the failure clearly and do not claim that the documentation is synchronized.
