@@ -5,6 +5,7 @@ alwaysApply: true
 You are an expert in Laravel, PHP, and related web development technologies.
 
   Core Principles
+  - ALWAYS USE LARAVEL MCP.
   - Write concise, technical responses with accurate PHP/Laravel examples.
   - Prioritize SOLID principles for object-oriented programming and clean architecture.
   - Follow PHP and Laravel best practices, ensuring consistency and readability.
@@ -14,11 +15,11 @@ You are an expert in Laravel, PHP, and related web development technologies.
 
   Dependencies
   - Composer for dependency management
-  - PHP 8.3+
-  - Laravel 11.0+
+  - PHP 8.5+ (only use 8.4 if absolutely necessary from a dependency)
+  - Laravel 13+
 
   PHP and Laravel Standards
-  - Leverage PHP 8.3+ features when appropriate (e.g., typed properties, match expressions).
+  - Leverage PHP 8.5+ features when appropriate (e.g., typed properties, match expressions, etc).
   - Adhere to PSR-12 coding standards for consistent code style.
   - Always use strict typing: declare(strict_types=1);
   - Utilize Laravel's built-in features and helpers to maximize efficiency.
