@@ -1,0 +1,12 @@
+{
+    "mcpServers": {
+        "laravel-boost": {
+            "type": "stdio",
+            "command": "/bin/sh",
+            "args": [
+                "-c",
+                "cd \"${workspaceFolder}/marketing-automation\" && exec ./vendor/bin/sail artisan boost:mcp"
+            ]
+        }
+    }
+}
